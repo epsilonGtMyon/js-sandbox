@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="QueryString.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      //------------------------------------
+      const data = {
+        stringValue: "1",
+        numberValue: 2,
+        booleanValue: true,
+        nullValue: null,
+        undefinedValue: undefined,
+        arrayValue: [3, 4],
+        arrayNestedValue: [
+          { a: 1, b: 2 },
+          { a: 3, b: 4 },
+        ],
+        nestObjValue: {
+          nest1Value: "11",
+          nestNest: {
+            nestNest2Value: "22",
+            nestNestNest: {
+              nestNestNest3Value: "33",
+            },
+          },
+        },
+      };
+
+      const text = QueryString.stringify(data);
+      console.log(text);
+
+      const obj = QueryString.parse(text);
+      console.log(obj);
+    </script>
+  </body>
+</html>
