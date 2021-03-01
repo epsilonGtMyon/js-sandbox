@@ -1,28 +1,31 @@
 (function () {
   function toDraggable(element) {
+    const mousemoveOption = {
+      capture: false,
+      passive: true,
+    };
     const draggableAreaElement = element.closest(".js-draggable-area");
-    let holding = false;
     let offsetX = -1;
     let offsetY = -1;
 
     element.addEventListener("mousedown", (ev) => {
-      holding = true;
       offsetX = ev.offsetX;
       offsetY = ev.offsetY;
+
+      document.documentElement.addEventListener("mousemove", onMousemove, mousemoveOption);
+      document.documentElement.addEventListener("mouseup", onMouseup);
     });
 
-    document.documentElement.addEventListener("mousemove", (ev) => {
-      if (!holding) {
-        return;
-      }
-
+    const onMousemove = (ev) => {
       draggableAreaElement.style.position = "absolute";
       draggableAreaElement.style.left = ev.pageX - offsetX + "px";
       draggableAreaElement.style.top = ev.pageY - offsetY + "px";
-    });
-    document.addEventListener("mouseup", (ev) => {
-      holding = false;
-    });
+    };
+
+    const onMouseup = () => {
+      document.documentElement.removeEventListener("mousemove", onMousemove, mousemoveOption);
+      document.documentElement.removeEventListener("mouseup", onMouseup);
+    };
   }
   const contentHeaders = document.querySelectorAll(".js-draggable-handle");
   contentHeaders.forEach((nd) => toDraggable(nd));

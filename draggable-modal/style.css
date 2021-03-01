@@ -25,7 +25,15 @@
 
 .modal .modal-header {
   height: 30px;
+  user-select: none;
+}
+
+.modal.is-primary .modal-header {
   background-color: green;
+  color: white;
+}
+.modal.is-danger .modal-header {
+  background-color: red;
   color: white;
 }
 
