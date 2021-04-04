@@ -5,9 +5,18 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <script type="module" src="./scripts/main.js" defer></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <div id="app">
+      <button id="mutex">MutexをUseで使う</button>
+
+      <button id="semaphore">Semaphoreをacquireで使う</button>
+
+      <hr />
+
+      <textarea id="textareaConsole"></textarea>
+      <button id="clear">クリア</button>
+    </div>
   </body>
 </html>

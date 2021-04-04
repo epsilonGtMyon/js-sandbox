@@ -1,5 +1,6 @@
 # await-semaphore-sandbox
-`await-semaphore` を試してみる
+`await-semaphore` を試してみる  
+長いこと更新されてないけど、ライブラリのコード自体少なくてシンプル
 
 せっかくなんで `vite` で動かしてみる
 
@@ -75,3 +76,7 @@ export default defineConfig({
 
 としておいたら `npm run dev` の代わりに `Ctrl` + `Shift` + `B` で起動できる  
 (本当は`npm run build` を登録すべきなんだろうが 頻度がコッチのが多い)
+
+
+`vite` のディレクトリの構成とかもやってみたいけど 
+今回は `await-semaphore` の検証をしたいので 別の機会に..
