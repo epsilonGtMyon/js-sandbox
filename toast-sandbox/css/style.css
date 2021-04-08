@@ -1,0 +1,79 @@
+/* トーストを設置するコンテナ */
+.toast-conntainer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  padding: 2em;
+  pointer-events: none;
+
+  display: flex;
+}
+/* 上から配置するコンテナ */
+.toast-conntainer__top {
+  flex-direction: column;
+}
+/* 下から配置するコンテナ */
+.toast-conntainer__bottom {
+  flex-direction: column-reverse;
+}
+
+.toast {
+  position: relative;
+  white-space: pre;
+  padding: 1em 2em;
+  border-radius: 5px;
+  display: inline;
+
+  margin-top: 10px;
+  /* コンテナがnoneにしているのでここは有効にする */
+  pointer-events: auto;
+}
+
+/* トーストの属性 */
+.toast.is-primary {
+  background-color: rgb(100, 200, 100);
+  color: white;
+}
+.toast.is-success {
+  background-color: rgb(100, 100, 250);
+  color: white;
+}
+.toast.is-danger {
+  background-color: rgb(200, 100, 100);
+  color: white;
+}
+
+/* トーストの配置場所 */
+.toast.is-top-right {
+  align-self: flex-end;
+}
+.toast.is-top-left {
+  align-self: flex-start;
+}
+.toast.is-top-center {
+  align-self: center;
+}
+.toast.is-bottom-right {
+  align-self: flex-end;
+}
+.toast.is-bottom-left {
+  align-self: flex-start;
+}
+.toast.is-bottom-center {
+  align-self: center;
+}
+
+/* 閉じるボタン */
+.toast .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
