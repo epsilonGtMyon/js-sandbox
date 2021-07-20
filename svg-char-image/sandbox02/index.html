@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>入力してみるぞえ</title>
+  <script type="text/javascript" src="./script.js" defer> </script>
+
+  <style>
+    .charImage {
+      height: 100px;
+      width: 100px
+    }
+    #char-image-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  エスケープしてないのでXSSの文字はダメ
+  <section>
+    <div>
+      <label>文字
+        <input type="text" id="image-text" maxlength="2">
+      </label>
+    </div>
+
+    <div>
+      <label>背景色
+        <input type="color" id="background-color" value="#ff0000">
+      </label>
+    </div>
+    
+    <div>
+      <label>文字色
+        <input type="color" id="char-color"  value="#ffffff">
+      </label>
+    </div>
+
+    <div>
+      <button id="add">追加</button>
+    </div>
+    <div>
+      ショートカット
+    </div>
+  </section>
+
+  <section>
+    <h2>いろいろ</h2>
+    <div id="char-image-container"></div>
+  </section>
+  
+</body>
+</html>
