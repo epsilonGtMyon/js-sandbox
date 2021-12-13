@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>JSONをつかう</h1>
+    consoleにだしてます
+
+    <script type="text/javascript">
+      class Xxx {
+        constructor(value) {
+          this.value = value
+        }
+
+        // toJSONがあればJSON.stringifyを呼び出したときにこれが呼ばれる
+        // そして戻り値が第2引数に、toJSONがなければこのインスタンスがそのまま
+        toJSON(...args){
+          // 引数も渡ってくるみたい
+          console.warn(args)
+          return `[Xxx:value=${this.value}]`
+        }
+      }
+      const originalObject = {
+        stringValue: "1",
+        numberValue: 2,
+        booleanValue: true,
+        nullValue: null,
+        undefinedValue: undefined,
+        primitiveArray: [1, 2, 3],
+        objectArray: [{ str: "1", num: 2, boo: false }],
+        dateValue: new Date(),
+        nestedObject: {
+          stringValue: "1",
+          numberValue: 2,
+          booleanValue: true,
+          nullValue: null,
+          dateValue: new Date(),
+        },
+        xValue: new Xxx("1222")
+      };
+
+      function isDirectValue(value) {
+        if (value === null || value === undefined) {
+          return true;
+        }
+        const t = typeof value;
+        if (t === "string" || t === "number" || t === "boolean") {
+          return true;
+        }
+        return false;
+      }
+
+      const jsonText = JSON.stringify(originalObject, (key, value) => {
+        //1. valueにくるものにtoJSON関数が定義されている場合は、それを適用した状態で
+        //   この関数に流れてくる(例Date)
+        //2. undefinedを返すとそのプロパティは含まれなくなる
+        //3. オブジェクトをreturnで返した場合は そのプロパティでまたコールバックが呼ばれる
+
+
+        // 以下テキトーに動かした残骸
+
+        console.log("-------");
+        console.log("key:", key);
+        console.log("value:", value);
+
+        if (isDirectValue(value)) {
+          return value;
+        }
+
+        if (Array.isArray(value)) {
+          return value;
+        }
+        if (key === "") {
+          return value;
+        }
+      });
+      console.log(jsonText);
+    </script>
+  </body>
+</html>
