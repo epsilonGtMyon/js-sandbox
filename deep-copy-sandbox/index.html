@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="./deepCopy.js"></script>
+  </head>
+  <body>
+    オレオレDeepCopy 
+    完全ではないけど、よく使う値とかはこれでいけるかな～
+
+    <script type="text/javascript">
+      class Hoge {
+        static staticValue = null;
+
+        constructor() {
+          this.value1 = null;
+          this.value2 = null;
+        }
+
+        method01() {
+          return "x";
+        }
+      }
+
+      class Foo extends Hoge {
+        constructor() {
+          super();
+          this.value3 = null;
+          this.value4 = null;
+        }
+      }
+
+      const src1 = new Foo();
+      src1.value1 = "123";
+      src1.value2 = 1;
+      src1.value3 = true;
+      src1.value4 = new Date(2020, 4, 20);
+
+      const dest1 = deepCopy(src1);
+      console.log(src1);
+      console.log(dest1);
+
+      //---------------------------------------------
+
+      const src2 = {
+        simpleArr: ["1", 2, false, null, undefined, new Date(2020, 0, 1)],
+        objectArr: [{ a: "1", b: 1, c: false, d: null, e: undefined, f: new Date(2020, 0, 1) }],
+        nestedObj: {
+          a: "1",
+          b: 2,
+          c: false,
+          d: new Date(2020, 0, 1),
+          nest2: {
+            a: "1",
+            b: 2,
+            c: false,
+            d: new Date(2020, 0, 1),
+          }
+        },
+      };
+
+      const dest2 = deepCopy(src2)
+      console.log(src2)
+      console.log(dest2)
+      // Dateが別の参照であること
+      console.log(src2.simpleArr === dest2.simpleArr)
+      console.log(src2.simpleArr[5] === dest2.simpleArr[5])
+      console.log(src2.objectArr[0].f === dest2.objectArr[0].f)
+      console.log(src2.nestedObj.d === dest2.nestedObj.d)
+    </script>
+  </body>
+</html>
