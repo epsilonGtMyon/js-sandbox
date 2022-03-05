@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dialog Sandbox</title>
+  </head>
+  <body>
+    <button id="modalOpener">モーダル</button>
+    <button id="modelessOpener">モードレス</button>
+
+    <dialog id="hogeDialog" class="dialog">
+      <header class="dialog-header">ダイアログ</header>
+      <div class="dialog-body">
+        <pre>
+htmlのdialogの確認
+<hr/>
+dialog要素にopenをつけることでダイアログを開くことができるほか
+<code>
+const hogeDialogElem = document.querySelector("#hogeDialog");
+hogeDialogElem.show();
+</code>
+でも開ける。
+
+また
+<code>
+hogeDialogElem.showModal();
+</code>
+とすることで、モーダルダイアログを開くことができる。
+<hr/>
+閉じる場合はopen属性をいじることでもできるが
+<code>
+hogeDialogElem.close();
+</code>
+で閉じることができる。
+
+closeには引数を1つ渡すことが可能で、ここには DOMString(文字かな?)を渡すことができる。
+その結果は
+<code>
+const result = hogeDialogElem.returnValue;
+</code>
+として参照することができる。
+<hr/>
+dialog自体にもcloseイベントが存在しており
+<code>
+hogeDialogElem.addEventListener('close', (ev) => {
+  console.log(ev.target.returnValue)
+})
+</code>
+このように書くことで、結果をハンドリングすることができる。
+<hr/>
+モーダルの時のバックグラウンドは <code>::backdrop</code> 疑似要素でスタイリングできる。
+        </pre>
+        <hr/>
+        <div>テキトーに入力するところ</div>
+        <label
+          >text1:
+          <input type="text" id="text1" />
+        </label>
+        <label
+          >text2:
+          <input type="text" id="text2" />
+        </label>
+      </div>
+      <footer class="dialog-footer">
+        <button id="dialogOk">ok</button>
+        <button id="cancel">cancel</button>
+      </footer>
+    </dialog>
+
+    <script>
+      (function () {
+        //モーダル、モーダレスのボタン
+        const modalOpenerElem = document.querySelector("#modalOpener");
+        const modelessOpenerElem = document.querySelector("#modelessOpener");
+
+        //ダイアログとその中のもろもろ
+        const hogeDialogElem = document.querySelector("#hogeDialog");
+        const text1Elem = document.querySelector("#text1");
+        const text2Elem = document.querySelector("#text2");
+        const dialogOkElem = document.querySelector("#dialogOk");
+        const dialogCancelElem = document.querySelector("#cancel");
+
+        //モーダルボタン
+        modalOpenerElem.addEventListener("click", () => {
+          if (hogeDialogElem.open) {
+            //開いてるときに開こうとするとエラーになるので
+            window.alert('既に開いてます')
+            return
+          }
+          hogeDialogElem.showModal();
+        });
+        //モーダレスボタン
+        modelessOpenerElem.addEventListener("click", () => {
+          hogeDialogElem.show();
+        });
+
+        //ダイアログをcloseした時
+        hogeDialogElem.addEventListener("close", (ev) => {
+          const result = JSON.parse(ev.target.returnValue);
+
+          if (result.pressedOk) {
+            window.alert(`入力内容
+text1: ${result.text1}
+text2: ${result.text2}`)
+          }
+        });
+
+        //ok
+        dialogOkElem.addEventListener("click", () => {
+          const text1Value = text1Elem.value;
+          const text2Value = text2Elem.value;
+          clearInput();
+          hogeDialogElem.close(
+            JSON.stringify({
+              pressedOk: true,
+              text1: text1Value,
+              text2: text1Value,
+            })
+          );
+        });
+
+        //キャンセル
+        dialogCancelElem.addEventListener("click", () => {
+          clearInput();
+          hogeDialogElem.close(
+            JSON.stringify({
+              pressedOk: false,
+              text1: "",
+              text2: "",
+            })
+          );
+        });
+
+        //入力欄のクリア
+        //次に開いたときに前の入力内容を残さないようにするために使う
+        function clearInput() {
+          text1Elem.value = "";
+          text2Elem.value = "";
+        }
+      })();
+    </script>
+
+    <style>
+      .dialog {
+        border-width: 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+        padding: 0;
+      }
+      .dialog::backdrop {
+        background-color: rgba(0, 0, 0, 0.5)
+      }
+      .dialog-header {
+        display: flex;
+        justify-content: flex-start;
+
+        background-color: hsl(249, 96%, 51%);
+        color: white;
+        padding: 0.3em 1em;
+      }
+      .dialog-body {
+        padding: 0.3em 1em;
+      }
+      .dialog-footer {
+        display: flex;
+        justify-content: flex-start;
+        border-top:1px black solid;
+        padding: 0.3em 1em;
+      }
+    </style>
+  </body>
+</html>
