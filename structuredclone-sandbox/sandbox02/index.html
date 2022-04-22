@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>structuredClone</title>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+
+    <h1>配列、オブジェクトでクローン試す</h1>
+    コンソールで確認
+
+    <script>
+      // 配列
+      const arrayValue1 = [1, '2', true, new Date(), {a: 1, b: '2', c: true}]
+      const arrayValue2 = structuredClone(arrayValue1);
+      console.log('arrayValue', arrayValue2)
+
+
+      
+      // オブジェクト
+      const objectValue1 = {
+        stringValue: '1',
+        numberValue: 2,
+        booleanValue: true,
+        dateValue: new Date(2020, 1, 1),
+        arrayValue: [1, '2'],
+        nestedObject: {
+          stringValue: '11',
+          numberValue: 22,
+          booleanValue: false,
+          dateValue: new Date(2020, 1, 2),
+          arrayValue: [11, '22'],
+          nestedObject: {
+            a: '1'
+          }
+        }
+      }
+      const objectValue2 = structuredClone(objectValue1);
+      console.log('objectValue', objectValue2)
+      
+      //参照の比較して 同一オブジェクトでないことを確認
+      const dateValueGetter = root => root['dateValue']
+      console.log('dateValue', dateValueGetter(objectValue1), dateValueGetter(objectValue1) === dateValueGetter(objectValue2))
+      
+      const arrayValueGetter = root => root['arrayValue']
+      console.log('arrayValue', arrayValueGetter(objectValue1), arrayValueGetter(objectValue1) === arrayValueGetter(objectValue2))
+      
+      const nestedDateValueGetter = root => root['nestedObject']['dateValue']
+      console.log('nestedDateValue', nestedDateValueGetter(objectValue1), nestedDateValueGetter(objectValue1) === nestedDateValueGetter(objectValue2))
+      
+      const nestedArrayValueGetter = root => root['nestedObject']['arrayValue']
+      console.log('arrayValue', nestedArrayValueGetter(objectValue1), nestedArrayValueGetter(objectValue1) === nestedArrayValueGetter(objectValue2))
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>structuredClone</title>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+
+    <h1>単一値でクローン試す</h1>
+    コンソールで確認
+
+    <script>
+      const stringValue1 = '1234'
+      const stringValue2 = structuredClone(stringValue1);
+      console.log('stringValue', stringValue2)
+
+      const numberValue1 = 1234
+      const numberValue2 = structuredClone(numberValue1);
+      console.log('numberValue', numberValue2)
+
+      const booleanValue1 = true;
+      const booleanValue2 = structuredClone(booleanValue1);
+      console.log('booleanValue', booleanValue2)
+      
+      const dateValue1 = new Date()
+      const dateValue2 = structuredClone(dateValue1);
+      console.log('dateValue', dateValue1, dateValue2)
+      console.log(dateValue1 === dateValue2) //参照の比較
+      
+      const nullValue1 = null;
+      const nullValue2 = structuredClone(nullValue1);
+      console.log('nullValue', nullValue2)
+      
+      const undefinedValue1 = undefined;
+      const undefinedValue2 = structuredClone(undefinedValue1);
+      console.log('undefinedValue', undefinedValue2)
+
+      const naNValue1 = NaN;
+      const naNValue2 = structuredClone(naNValue1);
+      console.log('naNValue', naNValue2)
+    </script>
+  </body>
+</html>
