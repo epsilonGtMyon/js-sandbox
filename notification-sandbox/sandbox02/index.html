@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notification-sandbox</title>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+
+    <h1>通知の実行</h1>
+
+    <section>
+      <h2>現在の状態</h2>
+      <div>現在の状態：<span id="notificationStatus"></span></div>
+      <div>
+        <button id="requestPermissionButton">通知許可の要求</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>通知１</h2>
+
+      <div>
+        <button id="notification1Button">通知１</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>通知２</h2>
+      連続でだす。通知はタグの機能を使ってグルーピングしている。
+      <div>
+        <button id="notification2Button">通知２</button>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const title = "Notification-sandbox";
+        const notificationStatusElem = document.querySelector(
+          "#notificationStatus"
+        );
+        const requestPermissionButtonElem = document.querySelector(
+          "#requestPermissionButton"
+        );
+        const notification1ButtonElem = document.querySelector(
+          "#notification1Button"
+        );
+        const notification2ButtonElem = document.querySelector(
+          "#notification2Button"
+        );
+
+        setInterval(() => {
+          notificationStatusElem.textContent = Notification.permission;
+        }, 500);
+
+        async function isEnabledNotification() {
+          if (Notification.permission === "granted") {
+            return true;
+          }
+          const result = await Notification.requestPermission();
+          return result === "granted";
+        }
+
+        requestPermissionButtonElem.addEventListener("click", async () => {
+          const response = await Notification.requestPermission();
+        });
+
+        notification1ButtonElem.addEventListener("click", async () => {
+          if (!(await isEnabledNotification())) {
+            return;
+          }
+
+          const n = new Notification(title, {
+            body: "通知のテストです",
+            //image: '/notification.png',やたら大きいイラスト通知エリアにでてくる
+            icon: "/notification.png",
+          });
+          n.onclick = (ev) => {
+            console.log("onclick", ev);
+            window.alert("通知がクリックされた");
+          };
+          n.onclose = (ev) => {
+            console.log("onclose", ev);
+          };
+          n.onshow = (ev) => {
+            console.log("onshow", ev);
+          };
+
+          setTimeout(() => {
+            //通知領域から消すことができる
+            n.close();
+          }, 10000);
+        });
+
+        notification2ButtonElem.addEventListener("click", async () => {
+          if (!(await isEnabledNotification())) {
+            return;
+          }
+
+          let counter = 0;
+          const timerId = setInterval(() => {
+            counter++;
+            if (counter > 5) {
+              clearInterval(timerId);
+              return;
+            }
+
+            new Notification(title, {
+              body: `通知のテストです[${counter}]`,
+              icon: "/notification.png",
+              tag: "button2", //タグをつけると グルーピングできるっぽい,
+              renotify: true, //タグ付けた場合はONにしておいたほうがいいかも、じゃないと古いのが画面に残る
+            });
+          }, 1500);
+        });
+      })();
+    </script>
+  </body>
+</html>

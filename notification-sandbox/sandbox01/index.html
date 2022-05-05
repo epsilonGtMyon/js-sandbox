@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notification-sandbox</title>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+
+    <h1>状態の取得と通知許可の要求</h1>
+
+    <section>
+      <h2>現在の状態</h2>
+      <code>Notification.permission</code
+      >を用いて現在の通知の許可状態を確認できる 通知の状態は
+      <ul>
+        <li>default：何もしていない</li>
+        <li>granted：許可済</li>
+        <li>denied：拒否</li>
+      </ul>
+      の３つで文字列で取得できる。
+
+      <div>現在の状態：<span id="notificationStatus"></span></div>
+    </section>
+
+    <section>
+      <h2>通知許可の要求</h2>
+      <p>
+        <code>Notification.requestPermission</code>を使って
+        通知許可の要求を出すことができる。
+        戻り値はPromiseなのでawaitで待つことができる
+      </p>
+      <p>
+        一度 <code>denied</code> になると要求メッセージが出ることなく自動で<code
+          >denied</code
+        >
+        が返ってくるようになる(この時点のChromeで調べた感じだと)
+      </p>
+
+      <div>
+        <button id="requestPermissionButton">通知許可の要求</button>
+      </div>
+    </section>
+
+    <section>
+
+
+    </section>
+      <h2>コード例</h2>
+      こんな感じで通知許可の確認と要求のコードを書けばいいのかな
+<pre><code>
+async function isEnabledNotification() {
+  if (Notification.permission === "granted") {
+    return true;
+  }
+  const result = await Notification.requestPermission();
+  return result === "granted";
+}
+</code></pre>
+    <script>
+      (function () {
+        const notificationStatusElem = document.querySelector(
+          "#notificationStatus"
+        );
+        const requestPermissionButtonElem = document.querySelector(
+          "#requestPermissionButton"
+        );
+
+        setInterval(() => {
+          notificationStatusElem.textContent = Notification.permission;
+        }, 500);
+
+        requestPermissionButtonElem.addEventListener("click", async () => {
+          const response = await Notification.requestPermission();
+          console.log(response);
+        });
+      })();
+    </script>
+  </body>
+</html>
