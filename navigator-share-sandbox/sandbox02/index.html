@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>navigator-share-Sandbox</title>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>共有の確認2</h1>
+
+    <section>
+      <h2>例</h2>
+      自由に試す
+      <div>
+        <label>
+          title:
+          <input id="title" />
+        </label>
+      </div>
+      <div>
+        <label>
+          text:
+          <input id="text" />
+        </label>
+      </div>
+      <div>
+        <label>
+          url:
+          <input id="url" />
+        </label>
+      </div>
+      
+      <div>
+        <button id="shareButton">共有</button>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const titleElem = document.querySelector("#title");
+        const textElem = document.querySelector("#text");
+        const urlElem = document.querySelector("#url");
+        const shareButtonElem = document.querySelector("#shareButton");
+        
+        shareButtonElem.addEventListener("click", () => {
+          const title = titleElem.value
+          const text = textElem.value
+          const url = urlElem.value
+          navigator.share({
+            title,
+            text,
+            url
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
