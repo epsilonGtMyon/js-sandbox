@@ -1,11 +1,9 @@
 (async function () {
-  {
-    //レコードを読み込む
-    //毎回リクエスト飛ぶけど
-    //やりたいこととは別の問題なので対応していない
-    const r = await fetch("./pokemon.json");
-    const records = await r.json();
-  }
+  //レコードを読み込む
+  //毎回リクエスト飛ぶけど
+  //やりたいこととは別の問題なので対応していない
+  const r = await fetch("./pokemon.json");
+  const records = await r.json();
 
   //-----------------------------------
   const dbName = "MyTestDatabase2";
