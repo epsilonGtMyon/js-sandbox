@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/dexie@3.2.2/dist/dexie.js"></script>
+    <script src="./script2.js" defer></script>
+    <link href="./style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>検索操作を適当に試す(Dexie使ってみる)</h1>
+    ポケモンの検索
+    <section class="ep-section">
+      番号で検索
+      <div>
+        <label
+          >No
+          <input type="number" id="no" min="1" max="999" />
+        </label>
+        <button id="searchByNumberButton">検索</button>
+      </div>
+      <p>
+        <code>get()</code>を使って検索
+      </p>
+    </section>
+
+    <section class="ep-section">
+      種族値合計で検索
+      <div>
+        <label>From
+          <input type="number" id="baseTotalFrom" min="1" max="999" />
+        </label>
+        
+        <label>To
+          <input type="number" id="baseTotalTo" min="1" max="999" />
+        </label>
+        <button id="searchBybaseTotalButton">検索</button>
+      </div>
+      <p>
+        <code>belowOrEqual</code>
+        <code>aboveOrEqual</code>
+        <code>between</code>をつかって取り出す
+        betweenはundefinedは渡したらだめみたい
+      </p>
+    </section>
+
+    
+    <section class="ep-section">
+      名前で検索
+      <div>
+        <label
+          >名前
+          <input type="text" id="name" maxlength="5" />
+        </label>
+        <button id="searchByNameButton">検索</button>
+      </div>
+      <p>
+        <code>filter</code>を使う
+      </p>
+
+    </section>
+
+    <section class="ep-section">
+      検索結果
+      <table id="searchResult">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>世代</th>
+            <th>名前</th>
+            <th>タイプ１</th>
+            <th>タイプ２</th>
+            <th>種族値合計</th>
+            <th>こうげき</th>
+            <th>ぼうぎょ</th>
+            <th>とくこう</th>
+            <th>とくぼう</th>
+            <th>すばやさ</th>
+            <th>HP</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </body>
+</html>
