@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <a href="../index.html">home</a>
+
+  <h1>Pointerを適当に試す</h1>
+  <p>
+    mouse, touch, pointerをそれぞれでpageX, pageYを取得。
+    テキトーにさわってください。
+  </p>
+  
+  <section>
+    <h2>mouse</h2>
+    <div>
+      <div>
+        down: <span id="mouseDown"></span>
+      </div>
+      <div>
+        move: <span id="mouseMove"></span>
+      </div>
+      <div>
+        up: <span id="mouseUp"></span>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <h2>touch</h2>
+    touchは同時タッチがあるから座標取得がいろいろややこしいっぽい
+    <div>
+      <div>
+        start: <span id="touchStart"></span>
+      </div>
+      <div>
+        move: <span id="touchDown"></span>
+      </div>
+      <div>
+        end: <span id="touchEnd"></span>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <h2>pointer</h2>
+    <div>
+      <div>
+        down: <span id="pointerDown"></span>
+      </div>
+      <div>
+        move: <span id="pointerMove"></span>
+      </div>
+      <div>
+        up: <span id="pointerUp"></span>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
