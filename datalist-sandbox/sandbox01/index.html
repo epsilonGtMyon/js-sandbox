@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>datalist要素を適当に試す</h1>
+    
+    <div>
+      <label>
+        カテゴリ(適当)
+        <select id="category">
+          <option value="">(未選択)</option>
+          <option value="db">データベース</option>
+          <option value="programing">プログラミング</option>
+          <option value="frontend-library">フロントエンドライブラリ</option>
+        </select>
+      </label>
+    </div>
+    <div>
+      <label>
+        入力(適当)
+        <input type="text" id="sandbox1" list="sandbox1-candidate" />
+        <datalist id="sandbox1-candidate"> </datalist>
+      </label>
+    </div>
+
+    <p>
+      datalistを使うことで入力タイプがtextのinput要素に対して候補を表示させることができる、
+      ただ、この候補に対してはスタイルがあてれない？？
+    </p>
+    <script>
+      window.addEventListener("load", () => {
+        const categoryElem = document.getElementById("category");
+        const sandbox1Elem = document.getElementById("sandbox1");
+        const sandbox1CandidateElem =
+          document.getElementById("sandbox1-candidate");
+
+        const categories = [
+          {
+            category: "",
+            candidates: [],
+          },
+          {
+            category: "db",
+            candidates: ["Oracle", "SQL Server", "My SQL", "PostgreSQL"],
+          },
+          {
+            category: "programing",
+            candidates: [
+              "Java",
+              "C#",
+              "PHP",
+              "Ruby",
+              "Python",
+              "Swift",
+              "Dard",
+            ],
+          },
+          {
+            category: "frontend-library",
+            candidates: ["React", "Vue.js", "Angulat", "Svelte", "Soli"],
+          },
+        ];
+
+        categoryElem.addEventListener("change", () => {
+          sandbox1Elem.value = "";
+
+          while (sandbox1CandidateElem.firstChild) {
+            sandbox1CandidateElem.firstChild.remove();
+          }
+
+          const candidates = categories.find(
+            (x) => x.category === categoryElem.value
+          ).candidates;
+
+          for (const c of candidates) {
+            const option = document.createElement("option");
+            option.value = c;
+            sandbox1CandidateElem.append(option);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
