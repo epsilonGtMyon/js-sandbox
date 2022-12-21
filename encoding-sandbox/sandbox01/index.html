@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>encoding.js</title>
+    <script src="../lib/encoding/encoding.min.js" defer></script>
+    <script src="./script/script.js" defer></script>
+    <style>
+      .text {
+        height: 500px;
+        width: 500px;
+      }
+
+      .code {
+        padding: 10px;
+        background-color: rgb(10, 10, 10);
+        color: rgb(255, 255, 255)
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>convertで文字コードを試す</h1>
+
+    <div id="app">
+      <div>
+        SJISで出力するならこんな感じのコードになる。
+        <pre class="code">
+/**
+ * ダウンロード
+ * @param {Uint8Array} binary バイナリ
+ * @param {String} filename ファイル名
+ */
+function download(binary, filename) {
+  const blob = new Blob([binary], { type: "text/plain" });
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.download = filename;
+  a.href = url;
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+
+const textareaValue = myTextareaElem.value;
+
+// 0～65535のnumber[]
+const unicodeArray = Encoding.stringToCode(textareaValue);
+
+// 0～255のnumber[]
+// 他の言語でいうところのSJISのbyte[]
+const sjisArray = Encoding.convert(unicodeArray, {
+  from: "UNICODE",
+  to: "SJIS",
+});
+download(new Uint8Array(sjisArray), "SJIS.txt");
+        </pre>
+
+      </div>
+      <div>
+        <button id="sjis">sjis</button>
+        <button id="utf8">utf8</button>
+        <button id="utf16">utf16</button>
+      </div>
+      <textarea class="text" id="myTextarea"></textarea>
+    </div>
+  </body>
+</html>
