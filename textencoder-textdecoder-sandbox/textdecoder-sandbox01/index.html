@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TextDecoder</title>
+    <script src="./script.js" defer></script>
+    <style>
+      .text {
+        height: 500px;
+        width: 500px;
+      }
+      .code {
+        padding: 10px;
+        background-color: rgb(10, 10, 10);
+        color: rgb(255, 255, 255);
+      }
+      .errorMessage {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>TextEncoder</h1>
+
+    <div id="app">
+      <div>
+        fileのinput要素からsjisのファイルを添付した場合こんな感じ
+        <pre class="code">
+const file = e.target.files[0]
+const arrayBuffer = await file.arrayBuffer()
+const binary = new Uint8Array(arrayBuffer)
+const decoder = new TextDecoder("sjis",  { fatal: true })
+const s = decoder.decode(binary) // binaryはUint8Array
+        </pre>
+        <p>
+        fatalにtrueをしていても必ず例外が起きるわけではなく、utf16のファイルを添付すると普通に読み込めてしまうので、そこまで信用して使えるものではなさそう
+        </p>
+        <p>
+          使用可能なエンコーディングは<a href="https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API/Encodings" target="_blank">こちら</a>
+        </p>
+
+      </div>
+      <div>
+        <input id="file" type="file" />
+        <button id="decodeAsSjis">decodeAsSjis</button>
+        <button id="decodeAsUtf8">decodeAsUtf8</button>
+        <button id="decodeAsUtf16le">decodeAsUtf16le</button>
+        <button id="decodeAsUtf16be">decodeAsUtf16be</button>
+      </div>
+      <div>
+        <span class="errorMessage" id="errorMessage"></span>
+      </div>
+      <textarea class="text" id="myTextarea"></textarea>
+    </div>
+  </body>
+</html>
