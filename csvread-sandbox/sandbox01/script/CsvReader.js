@@ -51,11 +51,19 @@ const { CsvReader } = (function () {
       const record = [];
       let previousToken = undefined;
       let t = undefined;
+
       while (true) {
         previousToken = t;
         t = lexer.nextToken();
         if (t.tokenType === CsvTokenType.EOF) {
           // ファイルの終わり
+          if (
+            previousToken != null &&
+            previousToken.tokenType === CsvTokenType.DELIMITER
+          ) {
+            // カンマの直後にファイルが終了した場合, 空の値が無くなってしまう
+            record.push("");
+          }
           return { record: record, eof: true };
         } else if (t.tokenType === CsvTokenType.VALUE) {
           record.push(t.value);
@@ -65,12 +73,19 @@ const { CsvReader } = (function () {
             previousToken === undefined ||
             previousToken.tokenType === CsvTokenType.DELIMITER
           ) {
-            // カンマ2連続の場合もしくはいきなりカンマの場合
+            // レコードの先頭でいきなりカンマ もしくは カンマ2連続の場合
             // 空の値の事実が無くなってしまうのでここで追加
             record.push("");
           }
           continue;
         } else if (t.tokenType === CsvTokenType.EOR) {
+          if (
+            previousToken != null &&
+            previousToken.tokenType === CsvTokenType.DELIMITER
+          ) {
+            // カンマの直後にレコードが終了した場合, 空の値が無くなってしまう
+            record.push("");
+          }
           return { record: record, eof: false };
         }
       }
