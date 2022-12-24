@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>encoding.js</title>
+    <script src="../lib/encoding/encoding.min.js" defer></script>
+    <script src="./script/script.js" defer></script>
+    <style>
+      .text {
+        height: 500px;
+        width: 500px;
+      }
+
+      .code {
+        padding: 10px;
+        background-color: rgb(10, 10, 10);
+        color: rgb(255, 255, 255);
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>sjis判定</h1>
+
+    <main id="app">
+      <div>
+        <p>
+          stringToCode, convertでSJISにしてからconvert(from,to逆), codeToStringでもとに戻したときに
+          元の文字列と一致してるかで判定
+        </p>
+        
+      </div>
+      <div>
+        <div>
+          <button id="execute">判定実行</button>
+        </div>
+        <div>
+          <span id="sjisResult"></span>
+        </div>
+        <textarea class="text" id="myTextarea"></textarea>
+      </div>
+    </main>
+  </body>
+</html>
