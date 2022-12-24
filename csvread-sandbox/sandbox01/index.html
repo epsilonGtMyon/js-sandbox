@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CsvRead</title>
+    <script src="./script/CsvInputSource.js" defer></script>
+    <script src="./script/CsvLexer.js" defer></script>
+    <script src="./script/CsvReader.js" defer></script>
+    <script src="./script/script.js" defer></script>
+
+    <style>
+      .csvTable {
+        border-collapse: collapse;
+      }
+      .csvTable th,
+      .csvTable td {
+        border: 1px solid #dbdbdb;
+        padding: 0.5em 1em 0.5em 1em;
+        white-space: pre-wrap;
+      }
+
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>Csvの読み込み</h1>
+
+    <main id="app">
+      <div>
+        <p>
+          フロントエンド側でCSVファイルを読み取り、そのままテーブルに表示してみる。
+        </p>
+        <p>
+          ※実装ミスによって内部で無限ループが発生する可能性があるので注意してください。
+        </p>
+      </div>
+
+      <div>
+        <input id="file" type="file" />
+        <button id="sjis">SJIS取込</button>
+        <button id="utf8">UTF8取込</button>
+      </div>
+      <div>
+        <span class="error" id="errorText"></span>
+      </div>
+      <table class="csvTable" id="csvTable"></table>
+    </main>
+  </body>
+</html>
