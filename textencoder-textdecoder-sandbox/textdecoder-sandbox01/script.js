@@ -21,7 +21,7 @@
       return null;
     }
 
-    const binary = new Uint8Array(await file.arrayBuffer());
+    const binary = await file.arrayBuffer();
 
     const decoder = decoders.get(encoding);
     const decoded = decoder.decode(binary);
