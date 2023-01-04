@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <script
+    src="https://cdn.jsdelivr.net/gh/snd-lib/snd-lib@v1.1.2/dist/browser/snd.js?kit=01"
+    defer
+  ></script>
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <a href="../index.html">home</a>
+  <h1>音をいろいろならしてみる</h1>
+  
+  <div id="app">
+    <div>
+      <h2>kitの変更</h2>
+      <p>
+        kitの変更を反映するには
+        <pre>await snd.load(Snd.KITS.SND01)</pre>
+        のように呼び出した必要
+      </p>
+      <select id="kit">
+        <option value="01" selected>SND01: sine</option>
+        <option value="02">SND02: piano</option>
+        <option value="03">SND03: industrial</option>
+      </select>
+    </div>
+    <div>
+      <h2>playメソッドを呼ぶ</h2>
+      <p>
+        <pre>snd.play(Snd.SOUNDS.BUTTON, option)</pre>
+        のように呼び出す。
+      </p>
+      <div>
+        <button id="p1_button">BUTTON</button>
+        <button id="p1_caution">CAUTION</button>
+        <button id="p1_celebration">CELEBRATION</button>
+        <button id="p1_disabled">DISABLED</button>
+        <button id="p1_notification">NOTIFICATION</button>
+        <button id="p1_progress_loop">PROGRESS_LOOP</button>
+        <button id="p1_ringtone_loop">RINGTONE_LOOP</button>
+        <button id="p1_select">SELECT</button>
+        <button id="p1_swipe">SWIPE</button>
+        <button id="p1_tap">TAP</button>
+        <button id="p1_toggle_off">TOGGLE_OFF</button>
+        <button id="p1_toggle_on">TOGGLE_ON</button>
+        <button id="p1_transition_down">TRANSITION_DOWN</button>
+        <button id="p1_transition_up">TRANSITION_UP</button>
+        <button id="p1_type">TYPE</button>
+      </div>
+    </div>
+    
+    <div>
+      <h2>playXxxを呼ぶ</h2>
+      <p>
+        <pre>snd.playButton(option)</pre>
+        のように呼び出す。
+      </p>
+      <div>
+        <button id="p2_button">BUTTON</button>
+        <button id="p2_caution">CAUTION</button>
+        <button id="p2_celebration">CELEBRATION</button>
+        <button id="p2_disabled">DISABLED</button>
+        <button id="p2_notification">NOTIFICATION</button>
+        <button id="p2_progress_loop">PROGRESS_LOOP</button>
+        <button id="p2_ringtone_loop">RINGTONE_LOOP</button>
+        <button id="p2_select">SELECT</button>
+        <button id="p2_swipe">SWIPE</button>
+        <button id="p2_tap">TAP</button>
+        <button id="p2_toggle_off">TOGGLE_OFF</button>
+        <button id="p2_toggle_on">TOGGLE_ON</button>
+        <button id="p2_transition_down">TRANSITION_DOWN</button>
+        <button id="p2_transition_up">TRANSITION_UP</button>
+        <button id="p2_type">TYPE</button>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script
+      src="https://cdn.jsdelivr.net/gh/snd-lib/snd-lib@v1.1.2/dist/browser/snd.js?kit=01"
+      defer
+    ></script>
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>snd-libのeasySetupを試す</h1>
+
+    <div id="app">
+      <div>
+        <p>
+          Sndのコンストラクタに渡すeasySetupがtrueの時(デフォルトはtrue)
+          特定の要素に特定のクラス名をつけていると自動でセットアップされる。
+          動きのないサイトならこれでいいかも
+        </p>
+        <p>
+          kitの変更はできないみたい？(わからないけど他のkitでloadしても音が変わらない..)
+        </p>
+      </div>
+      <div>
+        <button class="snd__button">BUTTON</button>
+        <button class="snd__caution">CAUTION</button>
+        <button class="snd__celebration">CELEBRATION</button>
+        <button class="snd__disabled">DISABLED</button>
+        <button class="snd__notification">NOTIFICATION</button>
+        <select class="snd__select">
+          <option></option>
+          <option>a</option>
+        </select>
+        <button class="snd__tap">TAP</button>
+        <label>
+          <input type="checkbox" class="snd__toggle" />
+          aaa
+        </label>
+        <button class="snd__transition_down">TRANSITION_DOWN</button>
+        <button class="snd__transition_up">TRANSITION_UP</button>
+        <input type="text" class="snd__type" placeholder="text" />
+      </div>
+    </div>
+  </body>
+</html>
