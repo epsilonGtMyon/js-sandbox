@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script
+      src="https://cdn.jsdelivr.net/gh/snd-lib/snd-lib@v1.1.2/dist/browser/snd.js?kit=01"
+      defer
+    ></script>
+    <script src="./script.js" defer></script>
+
+    <style>
+      .console-container {
+        background-color: rgb(10, 10, 10);
+        color: rgb(255, 255, 255);
+        overflow-y: scroll;
+        height: calc(100vh - 300px);
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>PlayOptionsを試す</h1>
+
+    <div id="app">
+      <div>
+        <div>
+          <label> <input id="loop" type="checkbox" />loop </label>
+        </div>
+        <div>
+          <label>
+            volume
+            <input id="volume" type="range" min="0" max="20" value="1" />
+            <span id="volumeValue"></span>
+          </label>
+        </div>
+        <div>
+          <label>
+            delay(seconds)
+            <input id="delay" type="range" min="0" max="5" value="0" />
+            <span id="delayValue"></span>
+          </label>
+        </div>
+
+        <div>
+          <label>
+            duration(seconds)
+            <input id="duration" type="range" min="-1" max="5" value="-1" />
+            <span id="durationValue"></span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h2>SOUNDS.BUTTON</h2>
+          <button id="play1">play1</button>
+          <button id="stop1">stop1</button>
+          
+        </div>
+        <div>
+          <h2>SOUNDS.PROGRESS_LOOP</h2>
+          <button id="play2">play2</button>
+          <button id="stop2">stop2</button>
+        </div>
+        
+        <div>
+          <h2>mute</h2>
+          <button id="mute">mute</button>
+          <button id="unmute">unmute</button>
+          <span id="muteValue"></span>
+        </div>
+      </div>
+
+      <div>
+        callback(loopの時はstopの時に呼ばれる、が複数同時にloopしてた時は最後のものだけ？)
+        <div class="console-container">
+          <div id="console" class="console"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
