@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./script.js" defer></script>
+  <title>zoom</title>
+  <style>
+    .none {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <a href="../index.html">home</a>
+  <h1>zoom倍率の変更を検知してみる</h1>
+  <div>
+    resizeイベントを使って検知してみる
+  </div>
+  
+  <div id="app">
+    <div>
+      <button class="none" id="startMonitoring">監視開始</button>
+      <button id="stopMonitoring">監視終了</button>
+    </div>
+    <div>
+      <div id="zoomState"></div>
+    </div>
+  </div>
+</body>
+</html>
