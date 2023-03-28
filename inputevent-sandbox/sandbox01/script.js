@@ -1,6 +1,8 @@
 (function(){
   const input1Elem = document.getElementById("input1")
+  const compositionElem = document.getElementById("composition")
   const x1Elem = document.getElementById("x")
+  
 
   input1Elem.addEventListener("input", ev => {
 
@@ -16,6 +18,11 @@ target.value = ${ev.target.value}`
 
   input1Elem.addEventListener("compositionend", ev => {
     console.log(ev)
+    compositionElem.textContent = ""
+  })
+  input1Elem.addEventListener("compositionstart", ev => {
+    console.log(ev)
+    compositionElem.textContent = "compositionstart"
   })
 
    
