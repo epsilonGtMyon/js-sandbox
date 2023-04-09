@@ -32,7 +32,7 @@ const { DateFormat, formatDate } = (function () {
         return pad(d.getSeconds(), 2);
       },
       get SSS() {
-        return pad(d.getMilliseconds(), 2);
+        return pad(d.getMilliseconds(), 3);
       },
     };
   }

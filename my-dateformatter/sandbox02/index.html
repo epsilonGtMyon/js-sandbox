@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="./script/createDatePartHandler.js" defer></script>
+    <script src="./script/DateFormatSource.js" defer></script>
+    <script src="./script/DateFormatLexer.js" defer></script>
+    <script src="./script/DateFormatter.js" defer></script>
+    <script src="./script/script.js" defer></script>
+    <style>
+      .formatTable {
+        border-collapse: collapse;
+      }
+      .formatTable :where(th, td) {
+        border: 1px solid #dbdbdb;
+        padding: 0 0.5em 0 0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>おれおれ日付フォーマッタ2</h1>
+
+    <div id="app">
+      <div>
+        <h2>対応しているフォーマット</h2>
+
+        <table id="formatTable" class="formatTable">
+          <thead>
+            <tr>
+              <th>フォーマット名</th>
+              <th>説明</th>
+              <th>結果</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="formatTable-format">a</td>
+              <td class="formatTable-description">AM/PM</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">yy</td>
+              <td class="formatTable-description">年2桁</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">yyyy</td>
+              <td class="formatTable-description">年4桁</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">M</td>
+              <td class="formatTable-description">月0埋めなし</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">MM</td>
+              <td class="formatTable-description">月0埋めあり</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">d</td>
+              <td class="formatTable-description">日0埋めなし</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">dd</td>
+              <td class="formatTable-description">日0埋めあり</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">h</td>
+              <td class="formatTable-description">時0埋めなし(12時間表記)</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">hh</td>
+              <td class="formatTable-description">時0埋めあり(12時間表記)</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">H</td>
+              <td class="formatTable-description">時0埋めなし(24時間表記)</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">HH</td>
+              <td class="formatTable-description">時0埋めあり(24時間表記)</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">m</td>
+              <td class="formatTable-description">分0埋めなし</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">mm</td>
+              <td class="formatTable-description">分0埋めあり</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">s</td>
+              <td class="formatTable-description">秒0埋めなし</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">ss</td>
+              <td class="formatTable-description">秒0埋めあり</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">S</td>
+              <td class="formatTable-description">ミリ秒 (秒の小数第1位)</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">SS</td>
+              <td class="formatTable-description">ミリ秒 (秒の小数第2位)</td>
+              <td class="formatTable-result"></td>
+            </tr>
+            <tr>
+              <td class="formatTable-format">SSS</td>
+              <td class="formatTable-description">ミリ秒</td>
+              <td class="formatTable-result"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div>
+          <h2>フリーフォーマット</h2>
+          <input id="freeFormat" value="yyyy/MM/dd HH:mm:ss.SSS"/>:
+          <span id="freeFormatResult"></span>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div>
+        <h2>操作</h2>
+        <div>
+          <input id="year" type="number" min="0" max="9999" />年
+          <input id="month" type="number" min="1" max="12" />月
+          <input id="date" type="number" min="1" max="31" />日
+          <input id="hour" type="number" min="0" max="23" />時
+          <input id="minute" type="number" min="0" max="59" />分
+          <input id="second" type="number" min="0" max="59" />秒
+          <input id="millisecond" type="number" min="0" max="999" />ミリ秒
+        </div>
+        <div>
+          <button id="applyCurrentDate">現在日時適用</button>
+          <button id="applyFormat">フォーマット適用</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
