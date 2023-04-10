@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>inert</title>
+  <script src="./script.js" defer></script>
+  <style>
+    .myArea {
+      border: 2px gray solid;
+    }
+
+    *[inert] {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <a href="../index.html">home</a>
+  <h1>template</h1>
+  
+  <div id="app">
+    <h1>inertを試す</h1>
+    <div>
+      inertをつけると そこにフォーカスだったりボタンを無効に
+    </div>
+
+    <div>
+      <button id="changeInert">inert切り替え</button>
+      <span id="inertState"></span>
+    </div>
+
+    <div id="inertArea" class="myArea">
+      <h2>inert適用領域内</h2>
+      <div>
+        <label
+          >input:text
+          <input type="text" />
+        </label>
+      </div>
+
+      <div>
+        <label
+          >input:checkbox
+          <input type="checkbox" />
+        </label>
+      </div>
+
+      <div
+        tabindex="0"
+        style="width: 100px; height: 100px; background-color: blue"
+      ></div>
+      
+      <button class="hello">hello</button>
+    </div>
+
+    <div class="myArea">
+      <h2>inert適用領域外</h2>
+      <div>
+        <label
+          >input:text
+          <input type="text" />
+        </label>
+      </div>
+
+      <div>
+        <label
+          >input:checkbox
+          <input type="checkbox" />
+        </label>
+      </div>
+
+      <div
+        tabindex="0"
+        style="width: 100px; height: 100px; background-color: blue"
+      ></div>
+      
+      <button class="hello">hello</button>
+    </div>
+  </div>
+</body>
+</html>
