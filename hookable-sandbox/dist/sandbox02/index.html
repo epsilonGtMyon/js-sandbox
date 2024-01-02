@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sandbox02</title>
+    <style>
+      .container {
+        display: flex;
+        max-width: 100vw;
+      }
+      .container-left {
+        flex-grow: 1;
+        flex-shrink: 0;
+        max-width: 50vw;
+      }
+      .container-right {
+        flex-grow: 1;
+        flex-shrink: 0;
+        max-width: 50vw;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/sandbox02-XGQvYfFb.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-8xOUJqzp.js">
+    <link rel="modulepreload" crossorigin href="/assets/util-KfYjxHzs.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-4Pf3vWiY.css">
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>sandbox02</h1>
+
+    <main>
+      <div class="container">
+        <div class="container-left">
+          <div>
+            <button id="callHook">callHook</button>
+            <button id="callHookParallel">callHookParallel</button>
+          </div>
+        </div>
+        <div class="container-right">
+          <div id="messages" class="messages"></div>
+        </div>
+      </div>
+
+      <div>
+        <p>callHook, callHookParallelはそれぞれawaitですべてのリスナーの実行を待機できるが実行方式が異なる</p>
+
+        <p>callHookは順次に実行しcallHookParallelは同時に実行する。</p>
+
+      </div>
+    </main>
+  </body>
+</html>
