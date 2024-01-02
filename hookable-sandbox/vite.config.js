@@ -5,6 +5,7 @@ const srcDir = resolve(rootDir, "src")
 /** @type {import('vite').UserConfig} */
 export default {
   root: srcDir,
+  base: "/js-sandbox/hookable-sandbox/dist/",
   build: {
     outDir: resolve(rootDir, "dist"),
     rollupOptions: {
