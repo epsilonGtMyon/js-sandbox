@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>proxy</title>
+    <script src="./script.js" defer></script>
+    <style>
+      .my-table {
+        border-collapse: collapse;
+
+        th,
+        td {
+          border: 1px black solid;
+          padding: 5px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>proxy1</h1>
+
+    <div id="app">
+      <div>
+        <p>
+          以下のようにProxyの第1引数に対象のインスタンス、第2引数にハンドラーを渡すことで
+          オブジェクトをラップしたものを作ることができる。
+        </p>
+        <p>
+          この例だと、値の取得やセットするときの動作を変更することができる。
+          本来の動作をするときはReflectの対応するメソッドを呼ぶ
+        </p>
+
+        <pre><code>
+const getSetObj = new Proxy(obj, {
+  get(target, prop, receiver) {
+    if (prop === "value01") {
+      return `get:${target[prop]}`;
+    }
+    return Reflect.get(...arguments);
+  },
+  set(obj, prop, value) {
+    if (prop === "value02") {
+      obj[prop] = `set:${value}`;
+      return true;
+    }
+    return Reflect.set(...arguments);
+  },
+})
+        </code></pre>
+      </div>
+      <div>
+        <div>
+          <div>
+            <label
+              >value01:
+              <input id="value01" />
+            </label>
+          </div>
+          <div>
+            <label
+              >value02:
+              <input id="value02" />
+            </label>
+          </div>
+          <div>
+            <button id="executeButton">実行</button>
+          </div>
+        </div>
+
+        <table class="my-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Proxyなし</th>
+              <th>getのみ</th>
+              <th>setのみ</th>
+              <th>get/set</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>value01</td>
+              <td>
+                <span id="plainValue01"></span>
+              </td>
+              <td>
+                <span id="getValue01"></span>
+              </td>
+              <td>
+                <span id="setValue01"></span>
+              </td>
+              <td>
+                <span id="getSetValue01"></span>
+              </td>
+            </tr>
+            <tr>
+              <td>value02</td>
+              <td>
+                <span id="plainValue02"></span>
+              </td>
+              <td>
+                <span id="getValue02"></span>
+              </td>
+              <td>
+                <span id="setValue02"></span>
+              </td>
+              <td>
+                <span id="getSetValue02"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
