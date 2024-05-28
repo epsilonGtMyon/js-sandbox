@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>proxy</title>
+    <script src="./script.js" defer></script>
+    <style></style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>proxy2</h1>
+
+    <div id="app">
+      <div>
+        <p>
+          Proxyのapplyで関数の実行に介入することができる。
+          constructというのもありnewに介入ができる。
+        </p>
+<pre><code>
+function concatText(left, right) {
+  return `${left} ${right}`;
+}
+
+const proxyConcatText = new Proxy(concatText, {
+  apply(target, thisArg, argumentsList) {
+    console.log("args:", argumentsList)
+    const r = Reflect.apply(...arguments)
+    console.log(`return:`, r)
+    return r;
+  }
+})
+</code></pre>
+      </div>
+      <div>
+        <div>
+          <label> value01: <input id="value01" /> </label>
+        </div>
+        <div>
+          <label> value02: <input id="value02" /> </label>
+        </div>
+        <div>
+          <button id="concatButton">連結</button>
+        </div>
+        <div>
+          <span id="resultText"></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
