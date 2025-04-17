@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>JS01</h1>
+
+    <div id="app">
+      <p>
+        popover="manual" 属性を付与した要素に対してshowPopover, hidePopover,
+        togglePopoverメソッドを使用することで、ポップオーバーの表示/非表示を切り替えることができる。
+      </p>
+
+      <hr />
+
+      <div>
+        <button id="popoverButton">ポップオーバー化/解除</button>
+        <button id="showPopoverButton">showPopover</button>
+        <button id="hidePopoverButton">hidePopover</button>
+        <button id="togglePopoverButton">togglePopover</button>
+      </div>
+
+      <hr />
+
+      <div id="popoverTarget">ポップオーバー対象</div>
+    </div>
+    
+
+    <script>
+      (function () {
+        const popoverTargetElem = document.getElementById("popoverTarget");
+
+        const popoverButtonElem = document.getElementById("popoverButton");
+        const showPopoverButtonElem =
+          document.getElementById("showPopoverButton");
+        const hidePopoverButtonElem =
+          document.getElementById("hidePopoverButton");
+        const togglePopoverButtonElem = document.getElementById(
+          "togglePopoverButton"
+        );
+
+        popoverButtonElem.addEventListener("click", function () {
+          // popover属性を付与することでポップオーバー化する
+          popoverTargetElem.hasAttribute("popover")
+            ? popoverTargetElem.removeAttribute("popover")
+            : popoverTargetElem.setAttribute("popover", "manual");
+        });
+
+        showPopoverButtonElem.addEventListener("click", function () {
+          popoverTargetElem.showPopover();
+        });
+        hidePopoverButtonElem.addEventListener("click", function () {
+          popoverTargetElem.hidePopover();
+        });
+        togglePopoverButtonElem.addEventListener("click", function () {
+          popoverTargetElem.togglePopover();
+        });
+      })();
+    </script>
+  </body>
+</html>

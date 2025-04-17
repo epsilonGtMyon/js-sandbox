@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+
+    <style>
+      .tooltip {
+        position: absolute;
+        background-color: rgba(72, 199, 142);
+        color: white;
+        padding: 5px;
+        border-radius: 10px;
+
+        margin: 0;
+        top: anchor(bottom);
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>STYLE02</h1>
+
+    <div id="app">
+      <div style="position: relative">
+        <span id="text01">ここにポインタを配置</span>
+        <div id="tooltip01" class="tooltip" popover="manual">
+          ポップオーバー
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const text01Elem = document.getElementById("text01");
+      const tooltip01Elem = document.getElementById("tooltip01");
+
+      text01Elem.addEventListener("mouseenter", () => {
+        tooltip01Elem.showPopover();
+      });
+      text01Elem.addEventListener("mouseleave", () => {
+        //tooltip01Elem.hidePopover();
+      });
+    </script>
+  </body>
+</html>

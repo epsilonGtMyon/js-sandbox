@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>HTML02</h1>
+
+    <div id="app">
+      <p>popoverにはauto(デフォルト)やmanualを指定できる。</p>
+
+      <p>autoはライトディスミスになっている。 同時に1つしかでない</p>
+      <p>manualにするとhideで消すまで消えない 同時に複数出せる。</p>
+
+      <hr. />
+
+      <div>
+        <h2>popover="auto"</h2>
+
+        <button popovertarget="popoverAuto1" popovertargetaction="show">
+          Show1
+        </button>
+        <div id="popoverAuto1" popover>popoverAuto1</div>
+
+        <button popovertarget="popoverAuto2" popovertargetaction="show">
+          Show2
+        </button>
+        <div id="popoverAuto2" popover>popoverAuto2</div>
+
+        <button popovertarget="popoverAuto3" popovertargetaction="show">
+          Show3
+        </button>
+        <div id="popoverAuto3" popover>popoverAuto3</div>
+      </div>
+      <hr />
+
+      <div>
+        <h2>popover="manual"</h2>
+
+        <button popovertarget="popoverManual" popovertargetaction="show">
+          Show1
+        </button>
+        <button popovertarget="popoverManual" popovertargetaction="hide">
+          Hide1
+        </button>
+        <div id="popoverManual" popover="manual">popoverManual1</div>
+
+        <button popovertarget="popoverManua2" popovertargetaction="show">
+          Show2
+        </button>
+        <button popovertarget="popoverManua2" popovertargetaction="hide">
+          Hide2
+        </button>
+        <div id="popoverManua2" popover="manual">popoverManua2</div>
+
+        <button popovertarget="popoverManua3" popovertargetaction="show">
+          Show3
+        </button>
+        <button popovertarget="popoverManua3" popovertargetaction="hide">
+          Hide3
+        </button>
+        <div id="popoverManua3" popover="manual">popoverManua3</div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>HTML01</h1>
+
+    <div id="app">
+      <p>
+        ポップオーバー対象の要素に popover 属性を付与することで、ポップオーバー対象になる。
+        buttonにpopovertarget="mypopover"を付与することで、ポップオーバーの表示/非表示を切り替えることができる。
+
+        popover属性をつけると非表示になる。
+      </p>
+
+      <pre><code id="code">
+      </code></pre>
+        
+      <p>
+        デフォルトではEscキーだったり、外側などの他の箇所をクリックで閉じる(ライトディスミス)
+      </p>
+
+      <hr/>
+      <button popovertarget="mypopover">表示</button>
+      <div id="mypopover" style="width: 200px; height: 200px; background-color: rgba(0, 0, 0, 0.1)" popover>
+        Popover content
+        <button>aaa</button>
+        <input type="text" name="test" />
+      </div>
+
+      <div style="height: 100px"></div>
+      <div style="width: 50px; height: 50px; background-color: red"></div>
+    </div>
+
+    <script>
+      // HTMLエスケープがめんどくさいのでjsで書く
+      const codeElem = document.getElementById("code");
+      codeElem.textContent = `
+<button popovertarget="mypopover">Toggle the popover</button>
+<div id="mypopover" popover>Popover content</div>
+      `
+    </script>
+  </body>
+</html>

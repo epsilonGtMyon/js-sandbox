@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+
+    <style>
+      [popover] {
+        border-width: 1px;
+      }
+
+      #mypopover1::backdrop {
+        background-color: red;
+      }
+
+      #mypopover2:popover-open {
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>STYLE01</h1>
+
+    <div id="app">
+      <div>
+        <p>
+          ::backdrop疑似要素で背景の色を指定できる。
+        </p>
+        <button popovertarget="mypopover1">表示１</button>
+        <div id="mypopover1" popover>ポップオーバー１</div>
+      </div>
+      
+      <div>
+        <p>
+          :popover-openで開いてるときの擬似クラスが使える。
+          単体で使うというよりか他と組み合わせて使うことになりそう
+        </p>
+        <button popovertarget="mypopover2">表示2</button>
+        <div id="mypopover2" popover>ポップオーバー２</div>
+      </div>
+    </div>
+  </body>
+</html>
