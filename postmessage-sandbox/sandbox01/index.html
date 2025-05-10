@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>parent</title>
+
+    <script src="./index.js" type="module"></script>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <main>
+      <h1>Parent</h1>
+
+      postMessageを試す。
+      <p>
+        対象のwindowのpostMessageを呼び出すことで、メッセージを送信することができる。
+        対象のデータのシリアライズ、デシリアライズは自動でしてくれる。
+      </p>
+      <p>
+        メッセージの受信はwindowにmessageイベントを登録することで受信できる。
+      </p>
+
+      <button id="openChildButton">open child</button>
+      <button id="sendMessageButton">send Message</button>
+      <div>
+        <select id="windows"></select>
+      </div>
+    </main>
+  </body>
+</html>

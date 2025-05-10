@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>parent</title>
+
+    <script src="./index.js" type="module"></script>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <main>
+      <h1>Parent</h1>
+
+      <p>子ウィンドウにメッセージを送り返信をawaitで待機する。</p>
+
+      <button id="openChildButton">ウィンドウを開く</button>
+      <button id="sendMessageButton">メッセージ送信</button>
+
+      <div>
+        <label>
+          開いたウィンドウの一覧
+          <select id="windows"></select>
+        </label>
+      </div>
+    </main>
+  </body>
+</html>
