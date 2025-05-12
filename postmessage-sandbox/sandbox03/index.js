@@ -10,17 +10,25 @@ clearConsoleButtonElem.addEventListener("click", () => {
 });
 
 openChild1ButtonElem.addEventListener("click", async () => {
-  const result = await openWindowAndWait("child1.html");
-
-  console.log("result", result);
-  log("[child1] " + JSON.stringify(result.data.result));
+  try {
+    const result = await openWindowAndWait("child1.html");
+    console.log("result", result);
+    log("[child1] " + JSON.stringify(result.data.result));
+  } catch (e) {
+    console.error(e);
+    log("[child1] " + e.message);
+  }
 });
 
 openChild2ButtonElem.addEventListener("click", async () => {
-  const result = await openWindowAndWait("child2.html");
-
-  console.log("result", result);
-  log("[child2] " + JSON.stringify(result.data.result));
+  try {
+    const result = await openWindowAndWait("child2.html");
+    console.log("result", result);
+    log("[child2] " + JSON.stringify(result.data.result));
+  } catch (e) {
+    console.error(e);
+    log("[child2] " + e.message);
+  }
 });
 
 export {};

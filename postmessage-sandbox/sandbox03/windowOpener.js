@@ -28,6 +28,9 @@ function openWindowAndWait(path) {
           location.origin
         );
       },
+      reject(e) {
+        reject(e);
+      },
     };
 
     beforeCloseHandlers.push(beforeCloseHandler);
@@ -41,6 +44,10 @@ function openWindowAndWait(path) {
  */
 function sendBeforeClose(result) {
   const targetWindow = window.opener;
+  if (targetWindow == null || targetWindow.closed) {
+    throw new Error("targetWindow is null or closed");
+  }
+
   return new Promise((resolve, reject) => {
     // 親ウィンドウに結果を返す
     targetWindow.postMessage(
@@ -58,6 +65,9 @@ function sendBeforeClose(result) {
       targetWindow,
       handle() {
         resolve();
+      },
+      reject(e) {
+        reject(e);
       },
     };
 
@@ -97,5 +107,27 @@ window.addEventListener("message", (event) => {
     }
   }
 });
+
+// 対象ウィンドウのモニタリング
+const timerId = setInterval(() => {
+  for (let i = 0; i < beforeCloseHandlers.length; i++) {
+    const handler = beforeCloseHandlers[i];
+    if (handler.targetWindow.closed) {
+      handler.reject(new Error("targetWindow is closed"));
+      beforeCloseHandlers.splice(i, 1);
+      i--;
+    }
+  }
+
+  // ----------------
+  for (let i = 0; i < beforeCloseOkHandlers.length; i++) {
+    const handler = beforeCloseOkHandlers[i];
+    if (handler.targetWindow.closed) {
+      handler.reject(new Error("targetWindow is closed"));
+      beforeCloseOkHandlers.splice(i, 1);
+      i--;
+    }
+  }
+}, 1000);
 
 export { openWindowAndWait, sendBeforeClose };
