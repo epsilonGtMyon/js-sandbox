@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+    <style>
+      label {
+        font-weight: 600;
+      }
+
+      .is-error {
+        color: red;
+      }
+
+      .section {
+        padding: 1em;
+        border: 1px solid black;
+      }
+
+      .section-title {
+        font-weight: 600;
+        font-size: 1.5em;
+      }
+
+      .console-container {
+        background-color: rgb(10, 10, 10);
+        color: rgb(255, 255, 255);
+        overflow-y: scroll;
+        height: calc(100vh - 450px);
+
+        font-family: MS ゴシック;
+      }
+      .console {
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="module" src="./index.ts"></script>
+    <div id="app">
+      <div class="section">
+        <div class="section-title">基本情報</div>
+        <div>
+          <label
+            >※名(5文字):
+            <input type="text" id="firstname" />
+          </label>
+        </div>
+
+        <div>
+          <label
+            >※姓(5文字):
+            <input type="text" id="familyname" />
+          </label>
+        </div>
+
+        <div>
+          <label
+            >※年齢(5文字):
+            <input type="text" id="age" />
+          </label>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-title">スキル情報(最大3件)</div>
+        <label>skills: </label><button id="addSkillButton">追加</button>
+        <table id="skills">
+          <thead>
+            <tr>
+              <th>※スキル名(10文字)</th>
+              <th>※スキルレベル(3文字)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="section">
+        <div class="section-title">ペット情報</div>
+
+        <div>
+          <label
+            >ペットの名前１(5文字):
+            <input type="text" id="petName1" />
+          </label>
+        </div>
+        <div>
+          <label
+            >ペットの名前２(5文字):
+            <input type="text" id="petName2" />
+          </label>
+        </div>
+      </div>
+
+      <button id="registerButton">登録</button>
+      <button id="registerPetOnlyButton">ペットだけ登録</button>
+    </div>
+
+    <div class="console-container">
+      <div id="console" class="console"></div>
+    </div>
+  </body>
+</html>
