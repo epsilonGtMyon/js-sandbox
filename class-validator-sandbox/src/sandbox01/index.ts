@@ -69,6 +69,7 @@ registerButtonElem.addEventListener("click", async () => {
   const errors = await validate(form, {
     // default, pet両方とも
     groups: ["default", "pet"], 
+    forbidUnknownValues: false,// バグっぽくてこれをいれておかないと 配列とgroupsを組み合わせるとエラーになる。
     validationError: {
       target: false,
       value: false,
@@ -89,6 +90,7 @@ registerPetOnlyButtonElem.addEventListener("click", async () => {
   const errors = await validate(form, {
     // petだけ
     groups: ["pet"],
+    forbidUnknownValues: false,// バグっぽくてこれをいれておかないと 配列とgroupsを組み合わせるとエラーになる。
     validationError: {
       target: false,
       value: false,
