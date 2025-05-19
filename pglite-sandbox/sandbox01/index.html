@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PGlite</title>
+    <script src="./script.js" type="module"></script>
+
+    <style>
+      .queryArea {
+        width: 500px;
+        height: 200px;
+      }
+      .my-grid-container {
+        width: fit-content;
+        max-height: calc(100vh - 400px);
+        overflow-y: scroll;
+      }
+      .my-grid {
+        border-collapse: collapse;
+      }
+
+      .my-grid :where(th, td) {
+        border: 1px solid #dbdbdb;
+        background-color: white;
+
+        white-space: pre-wrap;
+        min-width: 80px;
+        padding: 0 0.5em 0 0.5em;
+      }
+
+      .my-grid th {
+        background-color: rgb(200, 255, 200);
+
+        position: sticky;
+        top: 0;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>PGliteの確認</h1>
+
+    <p>
+      PostgreSQLをwasm化したPGliteを試す。
+
+      とりあえずTODOテーブルを使ってクエリを発行するだけ
+    </p>
+
+    <div id="app">
+      <div>
+        <textarea id="sqlArea" class="queryArea"> </textarea>
+        <button id="executeQueryButton">実行</button>
+      </div>
+      <div class="my-grid-container">
+        <table id="queryResult" class="my-grid">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
