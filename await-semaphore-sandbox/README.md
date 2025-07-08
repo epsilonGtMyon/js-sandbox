@@ -10,10 +10,10 @@
 `vite` でプロジェクトを作る
 
 ```
-npm init @vitejs/app await-semaphore-sandbox --template vanilla
+npm create vite@latest await-semaphore-sandbox -- --template vanilla-ts
 
 cd await-semaphore-sandbox
-npm install
+npm ci
 ```
 
 `await-semaphore` を使う
@@ -26,6 +26,7 @@ npm install await-semaphore
 
 ```
 npm install setimmediate
+npm install --save @types/setimmediate
 ```
 
 ### `vite.config.js` ファイルを作る

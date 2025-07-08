@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>await-semaphore</title>
+    <script type="module" src="./index.ts"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="app">
+      Semaphoreを使ってacquire関数をつかう。解放するときはacquireの戻り値の関数を実行する。
+<pre><code>
+  const semaphore = new Semaphore(2);
+
+  // 2つ以上通ろうとしたときは待つ
+  const release = await semaphore.acquire();
+  try {
+    //この区間にはいれるのは2つの処理だけ
+  } finally {
+    //finallyで確実に呼ばれるようにしておいたほうがいいだろう
+    release();
+  }
+</code></pre>
+
+      <div>
+        <button id="semaphoreButton">semaphore</button>
+        <button id="clearButton">clear</button>
+      </div>
+
+      <div class="console-container">
+        <div id="console" class="console"></div>
+      </div>
+    </div>
+  </body>
+</html>
