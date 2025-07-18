@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>download-sandbox</title>
+    <script src="./script.js" type="module"></script>
+    <style>
+      .console-container {
+        background-color: rgb(10, 10, 10);
+        color: rgb(255, 255, 255);
+        overflow-y: scroll;
+        height: calc(100vh - 550px);
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+
+    <div id="app">
+      <h1>download-sandbox</h1>
+      <p>
+        jsでのファイルダウンロード・保存をする。
+        開発者ツールを開いてNetworkの速度をNo throttling
+        以外にするとわかりやすい
+      </p>
+
+      <div>
+        <h2>fetchとBlobとcreateObjectURL</h2>
+        <p>
+          createObjectURLを使ってaタグを使ってダウンロードする。
+          これだとレスポンスをすべて受け取ってから、ブラウザが保存をする。
+        </p>
+        <button id="simpleButton">simple</button>
+      </div>
+
+      <div>
+        <h2>fetchとBlobとstream</h2>
+        <p>
+          StreamSaver.jsを使ってストリーミングダウンロードをする。
+          iframeを使ってgithubの別サイトを表示しそこのService
+          Workerを使ってるっぽい。
+          github落ちてたら使えない可能性があるので、ファイルを持ってきてmitmの設定を変更したほうがよさそう。
+          これだとすぐにブラウザの保存が開始する。
+        </p>
+        <button id="fetchStreamButton">fetchStream</button>
+      </div>
+
+      <div>
+        <h2>axiosについて</h2>
+        <p>
+          axiosはXmlHttpRequestを使っている場合はstreamが使えない。
+          streamを使おうとすると結局内部はfetchを使うことになる。
+        </p>
+      </div>
+      <hr />
+      <div>
+        <button id="clearButton">clear</button>
+      </div>
+
+      <div class="console-container">
+        <div id="console" class="console"></div>
+      </div>
+    </div>
+  </body>
+</html>
