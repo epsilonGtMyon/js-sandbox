@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>addevent-abort-sandbox</title>
+    <script src="./script.js" type="module"></script>
+    <style>
+      .console-container {
+        background-color: rgb(10, 10, 10);
+        color: rgb(255, 255, 255);
+        overflow-y: scroll;
+        height: calc(100vh - 500px);
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>addEventListenerのリスナー削除</h1>
+
+    <div id="app">
+      <p>
+        addEventListenerの第3引数のoptionsにはsignalを受け取ることができる。
+        これを使うことで自動的にリスナーを削除することができる。
+      </p>
+
+      <pre><code>
+const abort = new AbortController();
+
+clickButtonElem.addEventListener(
+  "click",
+  () => {
+    // なにか
+  },
+  {
+    signal: abort.signal, // ←signalをセット
+  }
+);
+
+// こうするとリスナーを削除できる。
+abort.abort();
+      </code></pre>
+      <hr />
+      <div>
+        <button id="clickButton">click</button>
+        <button id="abortButton">abort</button>
+      </div>
+      <hr />
+      <div>
+        <button id="clearButton">clear</button>
+      </div>
+      <div class="console-container">
+        <div id="console" class="console"></div>
+      </div>
+    </div>
+  </body>
+</html>

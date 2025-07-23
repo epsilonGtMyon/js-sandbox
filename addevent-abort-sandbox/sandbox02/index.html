@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>addevent-abort-sandbox</title>
+    <script src="./script.js" type="module"></script>
+    <style>
+      .box {
+        background-color: rgb(200, 240, 200);
+        height: 300px;
+        width: 300px;
+        border: 1px black solid;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>addEventListenerのリスナー削除</h1>
+
+    <div id="app">
+      <p>イベントリスナーの中でabortしたら1回だけ実行とかもできる。</p>
+      <div style="display: flex; gap: 20px">
+        <div id="box1" class="box">mouseenterでabortあり</div>
+        <div id="box2" class="box">mouseenterでabortなし</div>
+      </div>
+    </div>
+  </body>
+</html>
