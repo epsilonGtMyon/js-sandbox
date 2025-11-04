@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./script.js" type="module"></script>
+    <title>PDF.js sandbox</title>
+    <style>
+      .pdfContainer {
+        height: 300px;
+        overflow-y: scroll;
+        border: black 1px solid;
+        width: fit-content;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>pdf.js</h1>
+    <p>
+      とりあえず1ページずつ表示 canvasにPDFを描画、スクロールは外側の要素で行う
+    </p>
+
+    <div id="app">
+      <div>
+        <button id="previousPageButton">前</button>
+        <span id="currentPageNumber"></span>
+        /
+        <span id="pageCountNumber"></span>
+        <button id="nextPageButton">次</button>
+      </div>
+      <div class="pdfContainer">
+        <canvas id="pdf-canvas" class="pdfCanvas"></canvas>
+      </div>
+    </div>
+  </body>
+</html>
