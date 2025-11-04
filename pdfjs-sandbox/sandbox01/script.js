@@ -15,16 +15,16 @@ let currentPageNumber = 1;
 // PDF ファイルの読み込み
 const url = "../compressed.tracemonkey-pldi-09.pdf";
 const loadingTask = pdfjsLib.getDocument(url);
-const pdf = await loadingTask.promise;
-console.log("pdf loaded", pdf);
+const pdfDocument = await loadingTask.promise;
+console.log("pdf loaded", pdfDocument);
 await renderPage(1);
 
-const pageCount = pdf.numPages;
+const pageCount = pdfDocument.numPages;
 pageCountNumberElem.textContent = pageCount;
 
 async function renderPage(pageNumber) {
   // PDF ページの読み込み
-  const pdfPage = await pdf.getPage(pageNumber);
+  const pdfPage = await pdfDocument.getPage(pageNumber);
 
   // レンダー
   const scale = 1;
@@ -43,7 +43,7 @@ async function renderPage(pageNumber) {
   await renderTask.promise;
 
   // ページ番号の設定
-  currentPageNumber = pageNumber
+  currentPageNumber = pageNumber;
   currentPageNumberElem.textContent = currentPageNumber;
 }
 
