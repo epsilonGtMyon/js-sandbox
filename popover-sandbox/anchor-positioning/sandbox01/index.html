@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+
+    <style>
+      .container {
+        padding-left: 200px;
+        height: 500px;
+      }
+      .myPopover {
+        margin: 0;
+        inset: auto;
+      }
+
+      #myButton1 {
+        anchor-name: --myPopover1;
+      }
+      #myPopover1 {
+        position-anchor: --myPopover1;
+
+        bottom: anchor(top);
+        left: anchor(right);
+      }
+
+      #myButton2 {
+        anchor-name: --myPopover2;
+      }
+      #myPopover2 {
+        position-anchor: --myPopover2;
+
+        bottom: anchor(top);
+        justify-self: anchor-center;
+      }
+
+      #myButton3 {
+        anchor-name: --myPopover3;
+      }
+      #myPopover3 {
+        position-anchor: --myPopover3;
+        top: anchor(top);
+        left: anchor(right);
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>sandbox01</h1>
+
+    <div id="app">
+      <div>
+        <p>
+          いろいろ表示させる。
+        </p>
+        <p>
+          ボタン側に anchor-name でアンカーの名前をつける 名前は--から始まる。
+          ポップオーバー側にposition-anchor でアンカー先の名前を指定する。
+        </p>
+        <p>
+          ポップオーバー側にはブラウザ側がデフォルトでスタイルをあててうまく位置が決まらないので調整が必要
+        </p>
+        <pre><code>
+#myButton1 {
+  anchor-name: --myPopover1;
+}
+#myPopover1 {
+  position-anchor: --myPopover1;
+
+  bottom: anchor(top);
+  left: anchor(right);
+}      
+</code></pre>
+      </div>
+
+      <div style="overflow-y: scroll; height: 300px; border: 1px solid black">
+        <div class="container">
+          <button id="myButton1">表示</button>
+          <div id="myPopover1" class="myPopover" popover="manual">
+            ポップオーバー
+          </div>
+
+          <div style="height: 100px"></div>
+
+          <button id="myButton2" popovertarget="myPopover2">表示2</button>
+          <div id="myPopover2" class="myPopover" popover="auto">
+            ポップオーバー2
+          </div>
+          
+
+          <div style="height: 100px"></div>
+
+          <button id="myButton3" popovertarget="myPopover3">表示3</button>
+          <div id="myPopover3" class="myPopover" popover="auto">
+            ポップオーバー3
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const myButton1Elem = document.getElementById("myButton1");
+        const myPopover1Elem = document.getElementById("myPopover1");
+
+
+        myButton1Elem.addEventListener("click", () => {
+          myPopover1Elem.togglePopover();
+        });
+      })();
+    </script>
+  </body>
+</html>
