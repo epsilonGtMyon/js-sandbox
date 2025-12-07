@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ファイルドロップ</title>
+    <script type="module" src="./script.js"></script>
+    <style>
+      .dropzone {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 100px;
+        height: 100px;
+        border: 1px black solid;
+
+        cursor: pointer;
+
+        &:hover {
+          background-color: gray;
+          color: white;
+        }
+      }
+
+      .console-container {
+        background-color: rgb(10, 10, 10);
+        color: rgb(255, 255, 255);
+        overflow-y: scroll;
+        height: calc(100vh - 330px);
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>ファイルドロップ</h1>
+
+    <div id="app">
+      <p>
+        ドラッグ&ドロップでフォルダの中身を階層状に取得、フォルダを複数ドロップすると正しく取れないみたい。。
+      </p>
+      <p>dataTransfer、webkitGetAsEntryを使って再帰的にフォルダを探索する。</p>
+
+      <div id="dropzone" class="dropzone">dropzone</div>
+
+      <div class="console-container">
+        <div id="console" class="console"></div>
+      </div>
+    </div>
+  </body>
+</html>
