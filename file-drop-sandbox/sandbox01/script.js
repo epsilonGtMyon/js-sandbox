@@ -44,8 +44,8 @@ dropzoneElem.addEventListener("drop", async (ev) => {
 
 /**
  * エントリーを再帰的に集める
- * @param {*} entry 
- * @returns 
+ * @param {*} entry
+ * @returns
  */
 async function collectEntries(entry) {
   if (entry.isFile) {
@@ -110,11 +110,12 @@ async function readEntriesAsync(dirReader) {
 
 //---------------
 
+const collator = new Intl.Collator("ja");
 /**
  * 階層状のファイルの一覧を出力用に階層を取り除いて一次元配列に
- * @param {*} collectedItems 
- * @param {*} level 
- * @returns 
+ * @param {*} collectedItems
+ * @param {*} level
+ * @returns
  */
 function flatten(collectedItems, level = 0) {
   const flattenItems = [];
@@ -130,7 +131,19 @@ function flatten(collectedItems, level = 0) {
     if (collectedItem.isFile) {
       //noop
     } else if (collectedItem.isDirectory) {
-      const flattenContent = flatten(collectedItem.subItems, level + 1);
+      // 見栄えよくするために,フォルダが前、ファイルが下になるようにソート
+      const subItems = [...collectedItem.subItems];
+      subItems.sort((a, b) => {
+        if ((a.isFile && b.isFile) || (a.isDirectory && b.isDirectory)) {
+          // 名前で比較するので何もしない
+        } else {
+          return a.isFile ? 1 : -1;
+        }
+        return collator.compare(a.name, b.name);
+      });
+
+      const flattenContent = flatten(subItems, level + 1);
+
       flattenItems.push(...flattenContent);
     }
   }
