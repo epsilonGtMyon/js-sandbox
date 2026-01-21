@@ -55,8 +55,9 @@ function applyQueryResult(queryResult) {
 
   // -----------
   // head
+  const theadFragment = document.createDocumentFragment();
   const thead = document.createElement("thead");
-  queryResultElem.append(thead);
+  theadFragment.append(thead);
   const theadTr = document.createElement("tr");
   thead.append(theadTr);
   for (const field of fields) {
@@ -65,10 +66,13 @@ function applyQueryResult(queryResult) {
     theadTr.append(th);
   }
 
+  queryResultElem.append(theadFragment);
+
   // -----------
   // body
+  const tbodyFragment = document.createDocumentFragment();
   const tbody = document.createElement("tbody");
-  queryResultElem.append(tbody);
+  tbodyFragment.append(tbody);
   for (const row of queryResult.rows) {
     const tbodyTr = document.createElement("tr");
     tbody.append(tbodyTr);
@@ -78,6 +82,7 @@ function applyQueryResult(queryResult) {
       tbodyTr.append(td);
     }
   }
+  queryResultElem.append(tbodyFragment);
 }
 
 sqlAreaElem.value = `select
