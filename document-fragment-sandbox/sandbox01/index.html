@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>document-fragment-sandbox</title>
+    <script type="module" src="./script.js"></script>
+    <style>
+      .my-grid-container {
+        width: fit-content;
+        max-height: calc(100vh - 300px);
+        overflow-y: scroll;
+      }
+      .my-grid {
+        border-collapse: collapse;
+      }
+
+      .my-grid :where(th, td) {
+        border: 1px solid #dbdbdb;
+        background-color: white;
+
+        white-space: pre-wrap;
+        min-width: 80px;
+        padding: 0 0.5em 0 0.5em;
+      }
+
+      .my-grid th {
+        background-color: rgb(200, 255, 200);
+
+        position: sticky;
+        top: 0;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>DocumentFragment</h1>
+
+    <div id="app">
+      <p>
+        tableに行を追加する際、DocumentFragmentを使用してパフォーマンスを向上させるサンプル。
+      </p>
+      <p>
+        tbodyに直接追加するとパフォーマンスが悪いが、DocumentFragmentに追加してから一括でtbodyに追加するとパフォーマンスが向上する。
+      </p>
+
+      <div>
+        <input id="rowCount" style="text-align: right;"/>
+        <button id="btnAddRow">Add Row</button>
+        <button id="btnClearTable">Clear Table</button>
+      </div>
+
+      <div class="my-grid-container">
+        <table id="appTable" class="my-grid">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Col1</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
