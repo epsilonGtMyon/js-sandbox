@@ -13,6 +13,7 @@ code = ${ev.code}
 key = ${ev.key}
 repeat = ${ev.repeat}
 isComposing = ${ev.isComposing}
+keyCode (deprecated) = ${ev.keyCode}
     `
     x1Elem.textContent = logText
   })
