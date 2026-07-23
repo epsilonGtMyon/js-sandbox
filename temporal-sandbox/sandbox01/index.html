@@ -70,10 +70,12 @@ const plainDate = Temporal.Now.plainDateISO();
           </table>
         </div>
         <div>
-          Temporal.PlainDate.from で文字列から日付を生成できます。
+          Temporal.PlainDate.from で文字列やオブジェクトから日付を生成できます。
           <pre><code>
-const plainDate2 = Temporal.PlainDate.from("2026-07-22");
-plainDate2.toString(); // "2026-07-22"
+const plainDate2Format = Temporal.PlainDate.from("2026-07-22");
+plainDate2Format.toString(); // "2026-07-22"
+const plainDate2Object = Temporal.PlainDate.from({ year: 2026, month: 7, day: 22 });
+plainDate2Object.toString(); // "2026-07-22"
       </code></pre>
         </div>
       </div>
@@ -123,10 +125,12 @@ const plainTime = Temporal.Now.plainTimeISO();
           </table>
         </div>
         <div>
-          Temporal.PlainTime.from で文字列から時刻を生成できます。
+          Temporal.PlainTime.from で文字列やオブジェクトから時刻を生成できます。
           <pre><code>
-const plainTime2 = Temporal.PlainTime.from("12:34:56.789123");
-plainTime2.toString(); // "12:34:56.789123"
+const plainTime2Format = Temporal.PlainTime.from("12:34:56.789123");
+plainTime2Format.toString(); // "12:34:56.789123"
+const plainTime2Object = Temporal.PlainTime.from({ hour: 12, minute: 34, second: 56, millisecond: 789, microsecond: 123 });
+plainTime2Object.toString(); // "12:34:56.789123"
       </code></pre>
         </div>
       </div>
@@ -196,12 +200,14 @@ const plainDateTime = Temporal.Now.plainDateTimeISO();
           </table>
         </div>
         <div>
-          Temporal.PlainDateTime.from で文字列からインスタンスを生成できます。
+          Temporal.PlainDateTime.from で文字列やオブジェクトからインスタンスを生成できます。
           <pre><code>
 // Tは省略可
 // 日付と時刻を区切るもので、 T、t、空白のいずれかにすることができます。HH が存在するときのみ存在します。
-const plainDateTime2 = Temporal.PlainDateTime.from("2026-07-22T12:34:56.789123");
-plainDateTime2.toString(); // "2026-07-22T12:34:56.789123"
+const plainDateTime2Format = Temporal.PlainDateTime.from("2026-07-22T12:34:56.789123");
+plainDateTime2Format.toString(); // "2026-07-22T12:34:56.789123"
+const plainDateTime2Object = Temporal.PlainDateTime.from({ year: 2026, month: 7, day: 22, hour: 12, minute: 34, second: 56, millisecond: 789, microsecond: 123 });
+plainDateTime2Object.toString(); // "2026-07-22T12:34:56.789123"
       </code></pre>
         </div>
       </div>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temporalの確認</title>
+    <script type="module" src="./script.js"></script>
+    <style>
+      .grid {
+        border-collapse: collapse;
+      }
+      .grid th,
+      .grid td {
+        border: 1px solid #dbdbdb;
+        padding: 0em 1em 0em 1em;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">home</a>
+    <h1>Duration</h1>
+
+    <div>
+      <p>Durationは期間を表す</p>
+
+      <div>
+        <h2>生成方法</h2>
+
+        <p>
+          Temporal.Duration.fromで書式の文字列やオブジェクトからインスタンスを生成できます。
+        </p>
+
+        <pre><code>
+// 1年
+const _1yearFormat = Temporal.Duration.from('P1Y');
+console.log(_1yearFormat.toString()); // P1Y
+const _1yearObject = Temporal.Duration.from({ years: 1 });
+console.log(_1yearObject.toString()); // P1Y
+
+// -1年
+const _minus1yearFormat = Temporal.Duration.from('-P1Y');
+console.log(_minus1yearFormat.toString()); // -P1Y
+const _minus1yearObject = Temporal.Duration.from({ years: -1 });
+console.log(_minus1yearObject.toString()); // -P1Y
+
+// 3日と5時間
+const _3day5hourFormat = Temporal.Duration.from('P3DT5H');//Tもしくはtで日付と時刻を区切る
+console.log(_3day5hourFormat.toString()); // P3DT5H
+const _3day5hourObject = Temporal.Duration.from({ days: 3, hours: 5 });
+console.log(_3day5hourObject.toString()); // P3DT5H
+      </code></pre>
+
+        <div>
+          <h3>日付演算の結果として</h3>
+          <p>日付演算の結果としてDurationを取得することができます。
+            例えば、新年から現在までの期間を取得する場合は以下のように書きます。</p>
+          </p>
+          <pre><code>
+            const now = Temporal.Now.plainDateTimeISO();
+            const newYear = now.with({month: 1, day: 1, hour: 0, minute: 0, second: 0, millisecond: 0, microsecond: 0, nanosecond: 0});
+            const duration1 = now.since(newYear);
+            const duration2 = now.since(newYear, { largestUnit: 'months' });
+          </code></pre>
+        </div>
+        <div>
+          <h3>上記のプロパティ</h3>
+          <p>
+            上記のduration1とduration2のプロパティを表示します。
+
+            同じ期間であっても、largestUnitの指定によってプロパティの値が変わることがわかります。
+          </p>
+          <table class="grid">
+            <thead>
+              <tr>
+                <th>名前</th>
+                <th>duration1の値</th>
+                <th>duration2の値</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>years</td>
+                <td id="duration1-years"></td>
+                <td id="duration2-years"></td>
+              </tr>
+              <tr>
+                <td>months</td>
+                <td id="duration1-months"></td>
+                <td id="duration2-months"></td>
+              </tr>
+              <tr>
+                <td>days</td>
+                <td id="duration1-days"></td>
+                <td id="duration2-days"></td>
+              </tr>
+              <tr>
+                <td>hours</td>
+                <td id="duration1-hours"></td>
+                <td id="duration2-hours"></td>
+              </tr>
+              <tr>
+                <td>minutes</td>
+                <td id="duration1-minutes"></td>
+                <td id="duration2-minutes"></td>
+              </tr>
+              <tr>
+                <td>seconds</td>
+                <td id="duration1-seconds"></td>
+                <td id="duration2-seconds"></td>    
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+
+      
+      <div>
+        <h2>利用</h2>
+        <div>
+            <h3>日付の加算などに利用</h3>
+            <p>Durationは日付の加算や減算に利用できます。</p>
+            <pre><code>
+const duration = Temporal.Duration.from({ days: 3, hours: 5 });
+const newYear = Temporal.PlainDateTime.from('2026-01-01');
+const added = newYear.add(duration);
+added.toLocaleString() // 2026/1/4 5:00:00
+            </code></pre>
+        </div>
+
+        <div>
+            <h3>totalを使って日数、時間などに換算</h3>
+            <p>Durationのtotalプロパティを使うと、日数や時間などに換算できます。</p>
+            <pre><code>
+const duration = Temporal.Duration.from({ days: 3, hours: 5 });
+console.log(duration.total({ unit: 'days' })); // 3.2083333333333335
+console.log(duration.total({ unit: 'hours' })); // 77
+console.log(duration.total({ unit: 'minutes' })); // 4620
+            </code></pre>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
