@@ -6,7 +6,6 @@
     <title>Temporalの確認</title>
     <script type="module" src="./script.js"></script>
     <style>
-
       .grid {
         border-collapse: collapse;
       }
@@ -16,7 +15,6 @@
         padding: 0em 1em 0em 1em;
         white-space: pre-wrap;
       }
-
     </style>
   </head>
   <body>
@@ -24,14 +22,17 @@
     <h1>Temporalの確認(Plain系)</h1>
 
     <div id="app">
-      <p>PlainDate, PlainTime, PlainDateTimeはタイムゾーンを持たない</p>
-
+      <p>
+        PlainDate, PlainTime, PlainDateTimeなどPlain系はタイムゾーンを持たない
+      </p>
 
       <div>
         <h2>PlainDate</h2>
 
         <div>
-          <p>Temporal.Now.plainDateISO()で現在日付を取得できます。</p>
+          <p>
+            Temporal.Now.plainDateISO()で現在日付のインスタンスを取得できます。
+          </p>
           <pre><code>
 const plainDate = Temporal.Now.plainDateISO();
       </code></pre>
@@ -81,7 +82,9 @@ plainDate2.toString(); // "2026-07-22"
         <h2>PlainTime</h2>
 
         <div>
-          <p>Temporal.Now.plainTimeISO()で現在時刻を取得できます。</p>
+          <p>
+            Temporal.Now.plainTimeISO()で現在時刻のインスタンスを取得できます。
+          </p>
           <pre><code>
 const plainTime = Temporal.Now.plainTimeISO();
       </code></pre>
@@ -128,12 +131,13 @@ plainTime2.toString(); // "12:34:56.789123"
         </div>
       </div>
 
-      
       <div>
         <h2>PlainDateTime</h2>
 
         <div>
-          <p>Temporal.Now.plainDateTimeISO()で現在時刻を取得できます。</p>
+          <p>
+            Temporal.Now.plainDateTimeISO()で現在日時のインスタンスを取得できます。
+          </p>
           <pre><code>
 const plainDateTime = Temporal.Now.plainDateTimeISO();
       </code></pre>
@@ -192,7 +196,7 @@ const plainDateTime = Temporal.Now.plainDateTimeISO();
           </table>
         </div>
         <div>
-          Temporal.PlainDateTime.from で文字列から日時を生成できます。
+          Temporal.PlainDateTime.from で文字列からインスタンスを生成できます。
           <pre><code>
 // Tは省略可
 // 日付と時刻を区切るもので、 T、t、空白のいずれかにすることができます。HH が存在するときのみ存在します。
@@ -202,12 +206,52 @@ plainDateTime2.toString(); // "2026-07-22T12:34:56.789123"
         </div>
       </div>
 
+      <div>
+        <h2>PlainYearMonth</h2>
+
+        <div>
+          <p>
+            Temporal.Nowからは生成できないので
+            Temporal.Now.plainDateISO().toPlainYearMonth();
+            のようにPlainDateを経由して現在年月のインスタンスを取得する。
+          </p>
+          <pre><code>
+  const plainYearMonth = Temporal.Now.plainDateISO().toPlainYearMonth();
+      </code></pre>
+
+          各種プロパティ
+          <table class="grid">
+            <thead>
+              <tr>
+                <th>変数</th>
+                <th>値</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>year</td>
+                <td id="plainYearMonth-year"></td>
+              </tr>
+              <tr>
+                <td>month</td>
+                <td id="plainYearMonth-month"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        Temporal.PlainYearMonth.from で文字列からインスタンスを生成できます。
+        <pre><code>
+const plainYearMonth2 = Temporal.PlainYearMonth.from("2026-07");
+plainYearMonth2.toString(); // "2026-07"
+      </code></pre>
+      </div>
 
       <hr />
 
       これ以外にも演算用のメソッドがいろいろ用意されている。
-
-
     </div>
   </body>
 </html>

@@ -31,6 +31,11 @@ function main() {
   putDomValue("plainDateTime-second", plainDateTime.second);
   putDomValue("plainDateTime-millisecond", plainDateTime.millisecond);
   putDomValue("plainDateTime-microsecond", plainDateTime.microsecond);
+
+
+  const plainYearMonth = Temporal.Now.plainDateISO().toPlainYearMonth();
+  putDomValue("plainYearMonth-year", plainYearMonth.year);
+  putDomValue("plainYearMonth-month", plainYearMonth.month);
 }
 
 setInterval(() => {
